@@ -29,7 +29,7 @@ class NumberToken extends Token {
      */
     public function __construct($value) {
         parent::__construct(Token::TOKEN_NUMBER);
-        $this->value = $value;
+        $this->value = (float) $value;
     }
 
     /**
