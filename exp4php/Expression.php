@@ -144,12 +144,12 @@ class Expression {
                 }
                 if ($op->getOperator()->getNumOperands() == 2) {
                     /* pop the operands and push the result of the operation */
-                    $rightArg = $output->pop();
-                    $leftArg = $output->pop();
+                    $rightArg = (float) $output->pop();
+                    $leftArg = (float) $output->pop();
                     $output->push($op->getOperator()->apply([$leftArg, $rightArg]));
                 } else if ($op->getOperator()->getNumOperands() == 1) {
                     /* pop the operand and push the result of the operation */
-                    $arg = $output->pop();
+                    $arg = (float) $output->pop();
                     $output->push($op->getOperator()->apply([$arg]));
                 }
             } else if ($t->getType() == Token::TOKEN_FUNCTION) {
