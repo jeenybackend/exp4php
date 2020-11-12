@@ -1,13 +1,7 @@
-# exp4php
+# jeenybackend/exp4php
 
-exp4php is port of exp4j math expression evaluator from Frank Asseg, capable of evaluating simple mathematical
-expression, small in size, without any external libraries and simple to use.
+forked from https://github.com/easytaxibr/exp4php and updated to support php7.4
 
-Check out http://www.objecthunter.net/exp4j/
-
-## TODO
-- Unit tests
-
-## Author
-- Frank Asseg - original exp4j library
-- [Marek Vavrecan](mailto:vavrecan@gmail.com) - this PHP port
+## Run Test
+- composer install
+- vendor/bin/phpunit tests/BasicTest.php

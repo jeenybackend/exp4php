@@ -1,5 +1,5 @@
 {
-    "name": "easytaxibr/exp4php",
+    "name": "jeenybackend/exp4php",
     "type": "library",
     "version": "1.0.0",
     "description": "exp4php math expression evaluator",
@@ -20,5 +20,8 @@
         "files": [
             "exp4php/ExpressionBuilder.php"
         ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
     }
 }
