@@ -20,5 +20,8 @@
         "files": [
             "exp4php/ExpressionBuilder.php"
         ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
     }
 }
