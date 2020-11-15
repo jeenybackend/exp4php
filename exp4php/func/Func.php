@@ -96,7 +96,7 @@ abstract class Func {
         }
 
         for ($i = 0; $i < $size; $i++) {
-            $c = ord($name{$i});
+            $c = ord($name[$i]);
             if ($c == 95) {
                 continue;
             }

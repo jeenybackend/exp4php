@@ -56,9 +56,9 @@ class Tokenizer {
     }
 
     public function nextToken() {
-        $ch = $this->expression{$this->pos};
+        $ch = $this->expression[$this->pos];
         while (ctype_space($ch)) {
-            $ch = $this->expression{++$this->pos};
+            $ch = $this->expression[++$this->pos];
         }
         if (ctype_digit($ch) || $ch == '.') {
             if ($this->lastToken != null &&
@@ -142,9 +142,9 @@ class Tokenizer {
             $this->pos++;
         }
         while (!$this->isEndOfExpression($offset + $len - 1) &&
-                (ctype_alpha($this->expression{$offset + $len - 1}) ||
-                        ctype_digit($this->expression{$offset + $len - 1}) ||
-                        $this->expression{$offset + $len - 1} == '_')) {
+                (ctype_alpha($this->expression[$offset + $len - 1]) ||
+                        ctype_digit($this->expression[$offset + $len - 1]) ||
+                        $this->expression[$offset + $len - 1] == '_')) {
             $name = substr($this->expression, $offset, $len);
             if ($this->variableNames != null && in_array($name, $this->variableNames)) {
                 $lastValidLen = $len;
@@ -185,9 +185,9 @@ class Tokenizer {
             $this->pos++;
         }
         while (!$this->isEndOfExpression($offset + $len) &&
-                (ctype_alpha($this->expression{$offset + $len - 1}) ||
-                    ctype_digit($this->expression{$offset + $len - 1}) ||
-                    $this->expression{$offset + $len - 1} == '_')) {
+                (ctype_alpha($this->expression[$offset + $len - 1]) ||
+                    ctype_digit($this->expression[$offset + $len - 1]) ||
+                    $this->expression[$offset + $len - 1] == '_')) {
             $len++;
         }
         $this->pos += $len;
@@ -202,8 +202,8 @@ class Tokenizer {
         $lastValid = null;
         $symbol .= $firstChar;
 
-        while (!$this->isEndOfExpression($offset + $len)  && Operator::isAllowedOperatorChar($this->expression{$offset + $len})) {
-            $symbol .= $this->expression{$offset + $len++};
+        while (!$this->isEndOfExpression($offset + $len)  && Operator::isAllowedOperatorChar($this->expression[$offset + $len])) {
+            $symbol .= $this->expression[$offset + $len++];
         }
 
         while (strlen($symbol) > 0) {
@@ -230,7 +230,7 @@ class Tokenizer {
             $argc = ($this->lastToken == null ||
                         $this->lastToken->getType() == Token::TOKEN_OPERATOR ||
                         $this->lastToken->getType() == Token::TOKEN_PARENTHESES_OPEN) ? 1 : 2;
-            $op = Operators::getBuiltinOperator($symbol{0}, $argc);
+            $op = Operators::getBuiltinOperator($symbol[0], $argc);
         }
         return $op;
     }
@@ -245,13 +245,13 @@ class Tokenizer {
             return $this->lastToken;
         }
         while (!$this->isEndOfExpression($offset + $len) &&
-            $this->isNumeric($this->expression{$offset + $len}, $this->expression{$offset + $len - 1} == 'e' ||
-                $this->expression{$offset + $len - 1} == 'E')) {
+            $this->isNumeric($this->expression[$offset + $len], $this->expression[$offset + $len - 1] == 'e' ||
+                $this->expression[$offset + $len - 1] == 'E')) {
             $len++;
             $this->pos++;
         }
         // check if the e is at the end
-        if ($this->expression{$offset + $len - 1} == 'e' || $this->expression{$offset + $len - 1} == 'E') {
+        if ($this->expression[$offset + $len - 1] == 'e' || $this->expression[$offset + $len - 1] == 'E') {
             // since the e is at the end it's not part of the number and a rollback is necessary
             $len--;
             $this->pos--;
